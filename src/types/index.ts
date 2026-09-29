@@ -1,15 +1,15 @@
-export interface Credentials {
+export type Credentials = {
   idInstance: string;
   apiTokenInstance: string;
-}
+};
 
-export interface Message {
+export type Message = {
   id: string;
   text: string;
   outgoing: boolean;
-}
+};
 
-export interface ApiNotification {
+export type ApiNotification = {
   receiptId: number;
   body: {
     typeWebhook: string;
@@ -18,4 +18,4 @@ export interface ApiNotification {
       textMessageData?: { textMessage?: string };
     };
   };
-}
+};

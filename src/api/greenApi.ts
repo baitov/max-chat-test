@@ -1,40 +1,34 @@
 import axios from "axios";
 import type { ApiNotification } from "../types";
 
-const API_HOST = "https://api.green-api.com/v3/waInstance";
+const API = "https://api.green-api.com/v3/waInstance";
 
-const buildUrl = (id: string, token: string, method: string) =>
-  `${API_HOST}${id}/${method}/${token}`;
-
-export async function sendText(
+export const sendText = async (
   idInstance: string,
-  apiToken: string,
+  token: string,
   chatId: string,
-  text: string,
-) {
-  const { data } = await axios.post(
-    buildUrl(idInstance, apiToken, "sendMessage"),
-    {
-      chatId,
-      message: text,
-    },
-  );
-  return data as { idMessage: string };
-}
-
-export async function fetchNotification(idInstance: string, apiToken: string) {
-  const { data } = await axios.get<ApiNotification | null>(
-    buildUrl(idInstance, apiToken, "receiveNotification"),
+  message: string,
+) => {
+  const { data } = await axios.post<{ idMessage: string }>(
+    `${API}${idInstance}/sendMessage/${token}`,
+    { chatId, message },
   );
   return data;
-}
+};
 
-export async function dropNotification(
-  idInstance: string,
-  apiToken: string,
-  receiptId: number,
-) {
-  await axios.delete(
-    buildUrl(idInstance, apiToken, `deleteNotification/${receiptId}`),
+export const pullNotification = async (idInstance: string, token: string) => {
+  const { data } = await axios.get<ApiNotification | null>(
+    `${API}${idInstance}/receiveNotification/${token}`,
   );
-}
+  return data;
+};
+
+export const confirmNotification = async (
+  idInstance: string,
+  token: string,
+  receiptId: number,
+) => {
+  await axios.delete(
+    `${API}${idInstance}/deleteNotification/${token}/${receiptId}`,
+  );
+};
