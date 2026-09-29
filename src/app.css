@@ -1,0 +1,218 @@
+:root {
+    --bg: #f0f2f5;
+    --panel: #fff;
+    --accent: #6c5ce7;
+    --out: #d9fdd3;
+    --in: #fff;
+    --text: #1f2329;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    margin: 0;
+    height: 100%;
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+
+/* login */
+.login {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+}
+
+.login__card {
+    background: var(--panel);
+    padding: 32px;
+    width: 100%;
+    max-width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, .06);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login__card h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.login__hint {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.login__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.login__field input {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.login__field input:focus {
+    border-color: var(--accent);
+}
+
+.login__submit {
+    padding: 12px;
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.login__submit:hover {
+    opacity: .9;
+}
+
+/* chat */
+.screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 720px;
+    margin: 0 auto;
+    background: #efeae2;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--panel);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.topbar button {
+    background: transparent;
+    border: 0;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.topbar__back {
+    font-size: 20px !important;
+    padding: 0 8px;
+}
+
+.newchat {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    width: 320px;
+    background: var(--panel);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, .06);
+}
+
+.newchat h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.newchat input {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+}
+
+.newchat button {
+    padding: 10px;
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bubble {
+    max-width: 70%;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .08);
+}
+
+.bubble--in {
+    align-self: flex-start;
+    background: var(--in);
+    border-top-left-radius: 4px;
+}
+
+.bubble--out {
+    align-self: flex-end;
+    background: var(--out);
+    border-top-right-radius: 4px;
+}
+
+.composer {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background: var(--panel);
+    border-top: 1px solid #e5e7eb;
+}
+
+.composer input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 20px;
+    background: #f3f4f6;
+    outline: none;
+    font-size: 14px;
+}
+
+.composer button {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--accent);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.error {
+    padding: 8px 16px;
+    background: #fee2e2;
+    color: #991b1b;
+    font-size: 13px;
+}
