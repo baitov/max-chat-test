@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { ApiNotification } from "../types";
+import type { ApiNotification, CheckAccountResponse } from "../types";
 
 const API = "https://api.green-api.com/v3/waInstance";
 
@@ -31,4 +31,16 @@ export const confirmNotification = async (
   await axios.delete(
     `${API}${idInstance}/deleteNotification/${token}/${receiptId}`,
   );
+};
+
+export const checkAccount = async (
+  idInstance: string,
+  token: string,
+  phoneNumber: string,
+) => {
+  const { data } = await axios.post<CheckAccountResponse>(
+    `${API}${idInstance}/checkAccount/${token}`,
+    { phoneNumber: Number(phoneNumber) },
+  );
+  return data;
 };

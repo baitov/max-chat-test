@@ -19,3 +19,8 @@ export type ApiNotification = {
     };
   };
 };
+
+export type CheckAccountResponse = {
+  exist: boolean;
+  chatId: string;
+};
