@@ -1,75 +1,58 @@
-# React + TypeScript + Vite
+# MAX Chat — тестовое задание
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Простой веб-чат для мессенджера MAX на React + TypeScript.
+Работает через GREEN-API: вход по ключам инстанса, создание чата по номеру телефона,
+отправка и приём текстовых сообщений.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ⚠️ Перед проверкой
 
-## React Compiler
+Для работы приложения нужны **свои ключи GREEN-API**. Их выдают бесплатно
+на сайте сервиса:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+👉 **[console.green-api.com/registration](https://console.green-api.com/registration)**
 
-## Expanding the ESLint configuration
+Порядок действий:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Зарегистрируйтесь на [console.green-api.com](https://console.green-api.com/registration)
+   (бесплатно, без карты).
+2. Создайте инстанс на тарифе **«Разработчик»** (0 руб/мес).
+3. Авторизуйте его по QR-коду через приложение **MAX** на телефоне
+   (Настройки → Связанные устройства → Привязать устройство).
+4. Скопируйте из личного кабинета **`idInstance`** и **`apiTokenInstance`**.
+5. Введите их в форму входа на демо-странице.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Без своих ключей приложение покажет только форму входа — это нормально,
+так и задумано. Чужие ключи в проекте не хранятся.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Стек
 
-```
+- React 18 + TypeScript
+- Vite (сборка и dev-сервер)
+- axios (запросы к GREEN-API)
+- CSS без фреймворков
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Что реализовано
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Форма входа с полями `idInstance` и `apiTokenInstance`
+- Создание чата по номеру телефона (номер резолвится в `chatId` через `CheckAccount`)
+- Отправка текстовых сообщений (`SendMessage`)
+- Получение входящих через HTTP API (`ReceiveNotification` + `DeleteNotification`,
+  опрос раз в 3 секунды)
+- Отображение диалога: свои сообщения справа, входящие слева
+- Кнопка выхода из аккаунта
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Быстрый старт
 
+Нужен Node.js 18+ и npm.
+
+```bash
+# установить зависимости
+npm install
+
+# запустить dev-сервер
+npm run dev
 ```

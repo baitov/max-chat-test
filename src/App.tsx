@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { Credentials } from "./types";
 import LoginScreen from "./components/LoginScreen";
 import ChatScreen from "./components/ChatScreen";
-import "./App.css";
+import "./app.css";
 
 export default function App() {
   const [creds, setCreds] = useState<Credentials | null>(null);
